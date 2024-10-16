@@ -29,7 +29,7 @@ function equal(x0, y0, x1, y1) {
 
 function equalRound(digits) {
   const d = Math.floor(digits);
-  if (d > 15) return equal;
+  if (!(d <= 15)) return equal;
   const k = 10 ** d;
   const r = function(value) {
     return Math.round(value * k);
@@ -45,7 +45,7 @@ export class Path {
     this._x1 = this._y1 = null; // end of current subpath
     this._ = "";
     this._append = digits == null ? append : appendRound(digits);
-    this._equal = digits === null ? equal : equalRound(digits);
+    this._equal = digits == null ? equal : equalRound(digits);
   }
   moveTo(x, y) {
     this._append`M${this._x0 = this._x1 = +x},${this._y0 = this._y1 = +y}`;
