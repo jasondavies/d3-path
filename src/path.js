@@ -23,26 +23,21 @@ function appendRound(digits) {
   };
 }
 
-function round(digits) {
-  const k = 10 ** digits;
-  return function(value) {
-    return Math.round(value * k) / k;
-  };
-}
-
 function equal(x0, y0, x1, y1) {
   return x0 === x1 && y0 === y1;
 }
 
 function equalRound(digits) {
-  let d = Math.floor(digits);
+  const d = Math.floor(digits);
   if (d > 15) return equal;
-  const r = round(digits);
+  const k = 10 ** d;
+  const r = function(value) {
+    return Math.round(value * k);
+  };
   return function(x0, y0, x1, y1) {
     return r(x0) === r(x1) && r(y0) === r(y1);
   };
 }
-
 export class Path {
   constructor(digits) {
     this._x0 = this._y0 = // start of current subpath
