@@ -38,6 +38,7 @@ function equalRound(digits) {
     return r(x0) === r(x1) && r(y0) === r(y1);
   };
 }
+
 export class Path {
   constructor(digits) {
     this._x0 = this._y0 = // start of current subpath
